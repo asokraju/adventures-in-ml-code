@@ -42,6 +42,8 @@ def update_network(network, rewards, states, actions, num_actions):
     # 1. one_hot_encode the actions 
     one_hot_encode = np.array([[1 if a==i else 0 for i in range(2)]  for a in actions])
     # 2. pass the discounted rewards using 'sample_weight' parameter of 'categorical_crossentropy' loss function
+    loss = network.train_on_batch(states,target_actions, sample_weight=discounted_rewards)
+
     return loss
 
 
